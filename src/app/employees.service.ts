@@ -1,0 +1,39 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable, interval } from 'rxjs';
+import { switchMap, tap } from 'rxjs/operators';
+
+const apiUrl = 'https://api.angularbootcamp.com';
+const url = apiUrl + '/employees';
+
+export interface Employee {
+  id: number;
+  first_name: string;
+  last_name: string;
+  email: string;
+  hours_worked: number;
+  hourly_wage: number;
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class EmployeesService {
+  constructor(private http: HttpClient) {}
+
+  // Where should the catchError be placed to recover gracefully?
+
+  fetchEmployees() {
+    return this.http.get<Employee[]>(url).pipe(
+      tap(employees => console.table(employees))
+      // catchError(() => of(undefined))
+    );
+  }
+
+  pollEmployees(): Observable<Employee[] | undefined> {
+    return interval(2000).pipe(
+      switchMap(() => this.fetchEmployees())
+      // catchError(() => of(undefined))
+    );
+  }
+}
