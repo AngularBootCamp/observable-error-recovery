@@ -10,7 +10,7 @@ import { Employee, EmployeesService } from './employees.service';
     <ng-container *ngIf="employees | async as employeeList">
       <ul>
         <li *ngFor="let e of employeeList">
-          {{ e.first_name }} {{ e.last_name }}
+          {{ e.firstName }} {{ e.lastName }}
         </li>
       </ul>
     </ng-container>
