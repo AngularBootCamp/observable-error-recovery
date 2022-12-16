@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, interval } from 'rxjs';
-import { switchMap, tap } from 'rxjs/operators';
+import { Observable, interval, switchMap, tap } from 'rxjs';
 
 const apiUrl = 'https://api.angularbootcamp.com';
 const url = apiUrl + '/employees';
