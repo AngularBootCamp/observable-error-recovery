@@ -1,3 +1,4 @@
+import { NgIf, NgFor, AsyncPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -14,7 +15,9 @@ import { Employee, EmployeesService } from './employees.service';
         </li>
       </ul>
     </ng-container>
-  `
+  `,
+  standalone: true,
+  imports: [NgIf, NgFor, AsyncPipe]
 })
 export class AppComponent {
   employees: Observable<Employee[] | undefined>;
